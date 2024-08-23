@@ -1,0 +1,151 @@
+let { query } = require("../db/index");
+let logger = require("../logger");
+let createUserTransactionsTable = async () => {
+  let sql = ` CREATE TABLE IF NOT EXISTS userTransactions (
+                userId INTEGER,
+                transactionId INTEGER,
+                PRIMARY KEY (userId, transactionId),
+                FOREIGN KEY (userId) REFERENCES users(userId),
+                FOREIGN KEY (transactionId) REFERENCES transactions(transactionId)
+    )`;
+  try {
+    await query(sql);
+    logger.info("userTransactions table created successfully");
+  } catch (error) {
+    logger.error("Error creating userTransactions table: ", error);
+    throw error; // Re-throw the error if needed
+  }
+};
+let createTransactionsTable = async () => {
+  let sql = ` CREATE TABLE IF NOT EXISTS transactions (
+                transactionId PRIMARY KEY,
+                date TIMESTAMP,
+                base VARCHAR(3),
+                brl REAL,
+                usd REAL,
+                jpy REAL,
+                eur REAL,
+                gbp REAL,
+                btc REAL,
+                cad REAL, 
+    )`;
+  try {
+    await query(sql); // Now, await will work as expected
+    logger.info("transactions table created successfully");
+  } catch (error) {
+    logger.error("Error creating transactions table: ", error);
+    throw error;
+  }
+};
+
+let insertRate = async (
+  userId,
+  timestamp,
+  base,
+  brl,
+  usd,
+  jpy,
+  eur,
+  gbp,
+  btc,
+  cad,
+) => {
+  let sqlT = ` INSERT INTO transactions (trasactionId, TO_TIMESTAMP(timestamp), base, brl, usd, jpy, eur, gbp, btc, cad) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
+  let sqlUT = ` INSERT INTO userTransactions (userId, transactionId) VALUES ($1, $2)`;
+  const transactionId = generateRandomId();
+  let values = [
+    transactionId,
+    timestamp,
+    base,
+    brl,
+    usd,
+    jpy,
+    eur,
+    gbp,
+    btc,
+    cad,
+  ];
+  try {
+    await query(sqlUT, [userId, transactionId]);
+    await query(sqlT, values);
+    logger.info("Rate inserted successfully");
+  } catch (error) {
+    logger.error("Error inserting rate: ", error);
+  }
+};
+let createUsersTable = async () => {
+  let sql = ` CREATE TABLE IF NOT EXISTS users (
+                userId SERIAL PRIMARY KEY,
+                username VARCHAR(20),
+                password VARCHAR(20),
+                email VARCHAR(50), 
+    )`;
+  try {
+    await query(sql); // Now, await will work as expected
+    logger.info("users table created successfully");
+  } catch (error) {
+    logger.error("Error creating users table: ", error);
+    throw error;
+  }
+};
+
+let insertUser = async (username, password, email) => {
+  let sql = ` INSERT INTO users (username, password, email) VALUES ($1, $2, $3)`;
+  let values = [username, password, email];
+  try {
+    await query(sql, values);
+    logger.info("User registered successfully");
+  } catch (error) {
+    logger.error("Error registering user: ", error);
+  }
+};
+let getUser = async (username) => {
+  let sql = `SELECT * FROM users WHERE username = $1`;
+  let values = [username];
+  try {
+    let result = await query(sql, values);
+    return result;
+  } catch (error) {
+    logger.error("Error getting user: ", error);
+  }
+};
+
+const getTransactions = async (userId) => {
+  let sql = `SELECT * FROM userTransactions WHERE userId = $1`;
+  let values = [userId];
+  try {
+    let result = await query(sql, values);
+    if (result.rows.length === 0) {
+      console.log("No transactions found for this user.");
+      return [];
+    }
+    let data = await Promise.all(
+      result.rows.map(async (e) => {
+        let sql = `SELECT * FROM transactions WHERE transactionId = $1`;
+        let values = [e.transactionId];
+        let transactionResult = await query(sql, values);
+        return transactionResult.rows[0];
+      }),
+    );
+    return data;
+  } catch (error) {
+    logger.error("Error getting user transactions: ", error);
+    throw error;
+  }
+};
+
+function generateRandomId() {
+  const randomNumber = Math.floor(Math.random() * 2147483646) + 1;
+  const randomId = randomNumber.toString().padStart(10, "0");
+  return randomId;
+}
+
+module.exports = {
+  createUserTransactionsTable,
+  createTransactionsTable,
+  createUsersTable,
+  insertUser,
+  getUser,
+  insertRate,
+  getTransactions,
+};
