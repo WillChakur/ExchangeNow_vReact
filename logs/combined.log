@@ -44,6 +44,7 @@
 [32minfo[39m:    Transaction table setup successfully
 [32minfo[39m:    users table created successfully
 [32minfo[39m:    Users table setup successfully
+<<<<<<< HEAD
 [32minfo[39m:    users table created successfully
 [32minfo[39m:    Users table setup successfully
 [32minfo[39m:    transactions table created successfully
@@ -59,6 +60,8 @@
 [32minfo[39m:    Transaction table setup successfully
 [32minfo[39m:    users table created successfully
 [32minfo[39m:    Users table setup successfully
+=======
+>>>>>>> refs/remotes/origin/main
 [32minfo[39m:    transactions table created successfully
 [32minfo[39m:    userTransactions table created successfully
 [32minfo[39m:    Transaction table setup successfully

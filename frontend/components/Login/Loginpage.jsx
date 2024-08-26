@@ -1,4 +1,8 @@
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
+=======
+import logger from "../../../backend/logger";
+>>>>>>> refs/remotes/origin/main
 
 const Loginpage = () => {
   const navigate = useNavigate();
@@ -20,7 +24,11 @@ const Loginpage = () => {
     const isEmpty = values.include("");
 
     if (isEmpty) {
+<<<<<<< HEAD
       console.log("Please provide all values");
+=======
+      logger.info("Please provide all values");
+>>>>>>> refs/remotes/origin/main
       return;
     }
 
@@ -36,6 +44,7 @@ const Loginpage = () => {
       });
 
       if (!res.ok) {
+<<<<<<< HEAD
         console.error("Failed to log in");
       } else {
         console.log("Login successful");
@@ -43,6 +52,15 @@ const Loginpage = () => {
       }
     } catch (error) {
       console.error("Login fetch error ", error);
+=======
+        logger.error("Failed to log in");
+      } else {
+        logger.info("Login successful");
+        handleBack();
+      }
+    } catch (error) {
+      logger.error("Login fetch error ", error);
+>>>>>>> refs/remotes/origin/main
     }
   };
 
@@ -72,7 +90,11 @@ const Loginpage = () => {
         </div>
 
         <div className="registerButton">
+<<<<<<< HEAD
           <button onClick={handleRegister}>Register</button>
+=======
+          <button onClick={handleRegister()}>Register</button>
+>>>>>>> refs/remotes/origin/main
         </div>
       </div>
     </div>

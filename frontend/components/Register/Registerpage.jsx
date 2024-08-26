@@ -1,4 +1,8 @@
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
+=======
+import logger from "../../../backend/logger";
+>>>>>>> refs/remotes/origin/main
 const Registerpage = () => {
   const navigate = useNavigate();
 
@@ -19,7 +23,11 @@ const Registerpage = () => {
     const isEmpty = values.includes("");
 
     if (isEmpty) {
+<<<<<<< HEAD
       console.log("Please provide all values");
+=======
+      logger.info("Please provide all values");
+>>>>>>> refs/remotes/origin/main
       return;
     }
 
@@ -35,6 +43,7 @@ const Registerpage = () => {
       });
 
       if (!res.ok) {
+<<<<<<< HEAD
         console.error("Error registering the new user");
       } else {
         console.log("Successfully registered");
@@ -42,6 +51,15 @@ const Registerpage = () => {
       }
     } catch (error) {
       console.error("Error in register Fetch operation");
+=======
+        logger.error("Error registering the new user");
+      } else {
+        logger.info("Successfully registered");
+        handleRegistered();
+      }
+    } catch (error) {
+      logger.error("Error in register Fetch operation");
+>>>>>>> refs/remotes/origin/main
     }
   };
 
