@@ -1,5 +1,5 @@
-import fetchResult from "../fetchData/fetchResult";
-import Result from "../components/Result";
+import fetchResult from "../../fetchData/fetchResult";
+import Result from "./Result";
 import { useState } from "react";
 
 const base = ["EUR"];
@@ -16,7 +16,7 @@ const onSubmit = async (e) => {
 };
 
 const ExchangeForm = () => {
-  const [resultData, setResultData] = useState(0);
+  const [resultData, setResultData] = useState();
   const [selectedBase, setSelectedBase] = useState("");
   const [selectedTarget, setSelectedTarget] = useState("");
 
