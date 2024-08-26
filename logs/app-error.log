@@ -1,0 +1,7 @@
+[31merror[39m:   Error creating users table:  query is not a function
+[31merror[39m:   Error setting up the users table:  query is not a function
+[31merror[39m:   Error creating users table:  erro de sintaxe em ou próximo a ")"
+[31merror[39m:   Error setting up the users table:  erro de sintaxe em ou próximo a ")"
+[31merror[39m:   Error creating transactions table:  erro de sintaxe em ou próximo a "PRIMARY"
+[31merror[39m:   Error setting up the transaction table:  erro de sintaxe em ou próximo a "PRIMARY"
+[31merror[39m:   Fetch error:

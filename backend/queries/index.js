@@ -1,4 +1,4 @@
-let { query } = require("../db/index");
+let db = require("../db/index");
 let logger = require("../logger");
 let createUserTransactionsTable = async () => {
   let sql = ` CREATE TABLE IF NOT EXISTS userTransactions (
@@ -9,7 +9,7 @@ let createUserTransactionsTable = async () => {
                 FOREIGN KEY (transactionId) REFERENCES transactions(transactionId)
     )`;
   try {
-    await query(sql);
+    await db(sql);
     logger.info("userTransactions table created successfully");
   } catch (error) {
     logger.error("Error creating userTransactions table: ", error);
@@ -18,7 +18,7 @@ let createUserTransactionsTable = async () => {
 };
 let createTransactionsTable = async () => {
   let sql = ` CREATE TABLE IF NOT EXISTS transactions (
-                transactionId PRIMARY KEY,
+                transactionId INTEGER PRIMARY KEY,
                 date TIMESTAMP,
                 base VARCHAR(3),
                 brl REAL,
@@ -27,10 +27,10 @@ let createTransactionsTable = async () => {
                 eur REAL,
                 gbp REAL,
                 btc REAL,
-                cad REAL, 
+                cad REAL 
     )`;
   try {
-    await query(sql); // Now, await will work as expected
+    await db(sql); // Now, await will work as expected
     logger.info("transactions table created successfully");
   } catch (error) {
     logger.error("Error creating transactions table: ", error);
@@ -66,8 +66,8 @@ let insertRate = async (
     cad,
   ];
   try {
-    await query(sqlUT, [userId, transactionId]);
-    await query(sqlT, values);
+    await db(sqlUT, [userId, transactionId]);
+    await db(sqlT, values);
     logger.info("Rate inserted successfully");
   } catch (error) {
     logger.error("Error inserting rate: ", error);
@@ -78,10 +78,10 @@ let createUsersTable = async () => {
                 userId SERIAL PRIMARY KEY,
                 username VARCHAR(20),
                 password VARCHAR(20),
-                email VARCHAR(50), 
+                email VARCHAR(50) 
     )`;
   try {
-    await query(sql); // Now, await will work as expected
+    await db(sql); // Now, await will work as expected
     logger.info("users table created successfully");
   } catch (error) {
     logger.error("Error creating users table: ", error);
@@ -93,7 +93,7 @@ let insertUser = async (username, password, email) => {
   let sql = ` INSERT INTO users (username, password, email) VALUES ($1, $2, $3)`;
   let values = [username, password, email];
   try {
-    await query(sql, values);
+    await db(sql, values);
     logger.info("User registered successfully");
   } catch (error) {
     logger.error("Error registering user: ", error);
@@ -103,7 +103,7 @@ let getUser = async (username) => {
   let sql = `SELECT * FROM users WHERE username = $1`;
   let values = [username];
   try {
-    let result = await query(sql, values);
+    let result = await db(sql, values);
     return result;
   } catch (error) {
     logger.error("Error getting user: ", error);
@@ -114,7 +114,7 @@ const getTransactions = async (userId) => {
   let sql = `SELECT * FROM userTransactions WHERE userId = $1`;
   let values = [userId];
   try {
-    let result = await query(sql, values);
+    let result = await db(sql, values);
     if (result.rows.length === 0) {
       console.log("No transactions found for this user.");
       return [];
@@ -123,7 +123,7 @@ const getTransactions = async (userId) => {
       result.rows.map(async (e) => {
         let sql = `SELECT * FROM transactions WHERE transactionId = $1`;
         let values = [e.transactionId];
-        let transactionResult = await query(sql, values);
+        let transactionResult = await db(sql, values);
         return transactionResult.rows[0];
       }),
     );

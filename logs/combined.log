@@ -1,0 +1,46 @@
+[31merror[39m:   Error creating users table:  query is not a function
+[31merror[39m:   Error setting up the users table:  query is not a function
+[31merror[39m:   Error creating users table:  erro de sintaxe em ou próximo a ")"
+[31merror[39m:   Error setting up the users table:  erro de sintaxe em ou próximo a ")"
+[32minfo[39m:    users table created successfully
+[32minfo[39m:    Users table setup successfully
+[31merror[39m:   Error creating transactions table:  erro de sintaxe em ou próximo a "PRIMARY"
+[31merror[39m:   Error setting up the transaction table:  erro de sintaxe em ou próximo a "PRIMARY"
+[32minfo[39m:    users table created successfully
+[32minfo[39m:    Users table setup successfully
+[32minfo[39m:    users table created successfully
+[32minfo[39m:    Users table setup successfully
+[32minfo[39m:    transactions table created successfully
+[32minfo[39m:    userTransactions table created successfully
+[32minfo[39m:    Transaction table setup successfully
+[31merror[39m:   Fetch error:
+[32minfo[39m:    transactions table created successfully
+[32minfo[39m:    users table created successfully
+[32minfo[39m:    Users table setup successfully
+[32minfo[39m:    userTransactions table created successfully
+[32minfo[39m:    Transaction table setup successfully
+[32minfo[39m:    transactions table created successfully
+[32minfo[39m:    users table created successfully
+[32minfo[39m:    Users table setup successfully
+[32minfo[39m:    userTransactions table created successfully
+[32minfo[39m:    Transaction table setup successfully
+[32minfo[39m:    transactions table created successfully
+[32minfo[39m:    users table created successfully
+[32minfo[39m:    Users table setup successfully
+[32minfo[39m:    userTransactions table created successfully
+[32minfo[39m:    Transaction table setup successfully
+[32minfo[39m:    users table created successfully
+[32minfo[39m:    Users table setup successfully
+[32minfo[39m:    transactions table created successfully
+[32minfo[39m:    userTransactions table created successfully
+[32minfo[39m:    Transaction table setup successfully
+[32minfo[39m:    transactions table created successfully
+[32minfo[39m:    userTransactions table created successfully
+[32minfo[39m:    Transaction table setup successfully
+[32minfo[39m:    users table created successfully
+[32minfo[39m:    Users table setup successfully
+[32minfo[39m:    transactions table created successfully
+[32minfo[39m:    userTransactions table created successfully
+[32minfo[39m:    Transaction table setup successfully
+[32minfo[39m:    users table created successfully
+[32minfo[39m:    Users table setup successfully

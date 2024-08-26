@@ -1,31 +1,68 @@
+import fetchResult from "../fetchData/fetchResult";
+import Result from "../components/Result";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 
-const symbols = ["BRL", "USD", "JPY", "EUR", "GBP", "BTC", "CAD"];
+const base = ["EUR"];
+const target = ["BRL", "USD", "JPY", "EUR", "GBP", "BTC", "CAD"];
+
+const onSubmit = async (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.currentTarget);
+  const base = formData.get("base");
+  const target = formData.get("target");
+
+  const data = await fetchResult(base, target);
+  console.log(data);
+};
 
 const ExchangeForm = () => {
+  const [resultData, setResultData] = useState(0);
+  const [selectedBase, setSelectedBase] = useState("");
+  const [selectedTarget, setSelectedTarget] = useState("");
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const base = formData.get("base");
+    const target = formData.get("target");
+
+    const data = await fetchResult(base, target);
+
+    console.log(data);
+
+    setResultData(data);
+    setSelectedBase(base);
+    setSelectedTarget(target);
+  };
+
   return (
-    <form className="exchange">
-      <label htmlFor="base">Base currency:</label>
-      <select id="base" name="base">
-        <option value="">Select a currency</option>
-        {symbols.map((symbol) => (
-          <option key={symbol} value={symbol}>
-            {symbol}
-          </option>
-        ))}
-      </select>
-      <label htmlFor="target">Target currency:</label>
-      <select id="target" name="target">
-        <option value="">Select a currency</option>
-        {symbols.map((symbol) => (
-          <option key={symbol} value={symbol}>
-            {symbol}
-          </option>
-        ))}
-      </select>
-      <button>Submit</button>
-    </form>
+    <div className="form">
+      <form className="exchange" onSubmit={onSubmit}>
+        <label htmlFor="base">Base currency:</label>
+        <select id="base" name="base">
+          <option value="">Select a currency</option>
+          {base.map((symbol) => (
+            <option key={symbol} value={symbol}>
+              {symbol}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="target">Target currency:</label>
+        <select id="target" name="target">
+          <option value="">Select a currency</option>
+          {target.map((symbol) => (
+            <option key={symbol} value={symbol}>
+              {symbol}
+            </option>
+          ))}
+        </select>
+        <button>Submit</button>
+      </form>
+
+      {resultData && (
+        <Result base={selectedBase} target={selectedTarget} data={resultData} />
+      )}
+    </div>
   );
 };
 
