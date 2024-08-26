@@ -2,8 +2,10 @@ import ExchangeForm from "./ExchangeForm";
 
 const Main = () => {
   return (
-    <div>
-      <h2>Select Your Base Currency and Discover Exchange Rates</h2>
+    <div className="main">
+      <div className="main-title">
+        <h2>Select Your Base Currency and Check The Rates</h2>
+      </div>
       <ExchangeForm />
     </div>
   );
