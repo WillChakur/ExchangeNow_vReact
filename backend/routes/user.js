@@ -65,15 +65,52 @@ router.post("/login", async (req, res) => {
 
     const id = user.userid;
 
-    const token = jwt.sign({ id }, process.env.JWT_KEY, {
-      expiresIn: 300,
+    const acessToken = jwt.sign({ id }, process.env.JWT_KEY, {
+      expiresIn: 3600,
     });
 
-    res.json({ auth: true, token: token, result: user });
+    const refreshToken = jwt.sign({ id }, process.env.REFRESH_JWT_KEY, {
+      expiresIn: 10800,
+    });
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      path: "/refresh_token",
+    });
+
+    res.json({ auth: true, token: acessToken, result: user });
   } catch (error) {
     console.error("Error during login:", error);
     res.status(500).json({ message: "Internal server error" });
   }
+});
+
+router.post("/refresh_token", (req, res) => {
+  const token = req.cookies.refreshToken;
+
+  if (!token) {
+    return res.status(401).json({ message: "No refresh token provided" });
+  }
+
+  jwt.verify(token, process.env.REFRESH_JWT_KEY, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: "Invalid refresh token" });
+    }
+
+    const id = decoded.id;
+
+    const acessToken = jwt.sign({ id }, process.env.JWT_KEY, {
+      expiresIn: 3600,
+    });
+
+    res.json({ token: acessToken });
+  });
+});
+
+router.post("/logout", (req, res) => {
+  res.clearCookie("refreshToken", { path: "/refresh_token" });
+  res.status(200).json({ message: "Logged out successfully" });
 });
 
 module.exports = router;

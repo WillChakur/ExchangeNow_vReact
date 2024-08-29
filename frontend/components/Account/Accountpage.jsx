@@ -1,13 +1,25 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import fetchTransactions from "../../fetchData/fetchTransactions";
 
 const Accountpage = () => {
   const navigate = useNavigate();
 
-  const handleLogout = (e) => {
-    localStorage.removeItem("token");
-    navigate("/");
+  const handleLogout = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/user/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        console.log("Error while trying to logout");
+      }
+
+      localStorage.removeItem("token");
+      navigate("/");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
   };
 
   const handleClick = async () => {

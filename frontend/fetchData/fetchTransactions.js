@@ -1,3 +1,5 @@
+import refreshToken from "../fetchData/refreshToken";
+
 const fetchTransactions = async () => {
   const token = localStorage.getItem("token");
 
@@ -10,15 +12,22 @@ const fetchTransactions = async () => {
       },
     });
 
-    if (!res.ok) {
-      console.log("Error while getting the transactions");
-      return;
+    if (res.status === 401) {
+      token = await refreshToken();
+
+      if (token) {
+        res = await fetch("http://localhost:3000/rates", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      }
     }
-
-    const json = await res.json();
-
-    console.log(json);
-  } catch (error) {}
+  } catch (error) {
+    console.log("Error while fetching transactions");
+  }
 };
 
 export default fetchTransactions;
