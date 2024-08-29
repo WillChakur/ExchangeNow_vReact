@@ -50,8 +50,8 @@ let insertRate = async (
   btc,
   cad,
 ) => {
-  let sqlT = ` INSERT INTO transactions (trasactionId, TO_TIMESTAMP(timestamp), base, brl, usd, jpy, eur, gbp, btc, cad) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
-  let sqlUT = ` INSERT INTO userTransactions (userId, transactionId) VALUES ($1, $2)`;
+  let sqlT = `INSERT INTO transactions (transactionId, date, base, brl, usd, jpy, eur, gbp, btc, cad) VALUES ($1, TO_TIMESTAMP($2), $3, $4, $5, $6, $7, $8, $9, $10)`;
+  let sqlUT = `INSERT INTO userTransactions (userId, transactionId) VALUES ($1, $2)`;
   const transactionId = generateRandomId();
   let values = [
     transactionId,
@@ -66,13 +66,14 @@ let insertRate = async (
     cad,
   ];
   try {
-    await db(sqlUT, [userId, transactionId]);
     await db(sqlT, values);
+    await db(sqlUT, [userId, transactionId]);
     logger.info("Rate inserted successfully");
   } catch (error) {
     logger.error("Error inserting rate: ", error);
   }
 };
+
 let createUsersTable = async () => {
   let sql = ` CREATE TABLE IF NOT EXISTS users (
                 userId SERIAL PRIMARY KEY,

@@ -5,16 +5,6 @@ import { useState } from "react";
 const base = ["EUR"];
 const target = ["BRL", "USD", "JPY", "EUR", "GBP", "BTC", "CAD"];
 
-const onSubmit = async (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.currentTarget);
-  const base = formData.get("base");
-  const target = formData.get("target");
-
-  const data = await fetchResult(base, target);
-  console.log(data);
-};
-
 const ExchangeForm = () => {
   const [resultData, setResultData] = useState();
   const [selectedBase, setSelectedBase] = useState("");

@@ -22,6 +22,10 @@ const Accountpage = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate("/");
+  };
+
   const handleClick = async () => {
     const transactions = await fetchTransactions();
   };
@@ -30,6 +34,7 @@ const Accountpage = () => {
     <div className="accountPage">
       <div className="header">
         <button onClick={handleLogout}>Logout</button>
+        <button onClick={handleBack}>Home</button>
       </div>
 
       <div className="accountPage-title">

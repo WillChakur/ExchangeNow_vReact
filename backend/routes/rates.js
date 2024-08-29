@@ -19,8 +19,6 @@ const verifyJWT = (req, res, next) => {
     return res.status(401).json({ message: "No token provided" });
   }
 
-  const user = jwt.verify(token, process.env.JWT_KEY);
-
   jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
     if (err) {
       res.status(401).json({ message: "Error to authenticate token" });
@@ -41,9 +39,10 @@ const verifyJWT = (req, res, next) => {
   }
 })();
 
-router.post("/:base/:target", async (req, res) => {
+router.post("/:base/:target", verifyJWT, async (req, res) => {
   const base = req.params.base;
   const target = req.params.target;
+
   const url = `https://api.exchangeratesapi.io/v1/latest?access_key=${process.env.API_KEY}&base=${base}&symbols=USD,CAD,EUR,GBP,BTC,JPY,BRL`;
   try {
     const response = await fetch(url);
@@ -51,9 +50,9 @@ router.post("/:base/:target", async (req, res) => {
       const data = await response.json();
 
       if (data.success) {
-        if (req.session.userId) {
+        if (req.userId) {
           insertRate(
-            req.session.userId,
+            req.userId,
             data.timestamp,
             data.base,
             data.rates.BRL,
