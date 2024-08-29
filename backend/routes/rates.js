@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 const {
   insertRate,
   getTransactions,
@@ -8,6 +9,27 @@ const {
 } = require("../queries/index");
 const logger = require("../logger");
 require("dotenv").config();
+
+const verifyJWT = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ message: "No token provided" });
+  }
+
+  const user = jwt.verify(token, process.env.JWT_KEY);
+
+  jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+    if (err) {
+      res.status(401).json({ message: "Error to authenticate token" });
+    }
+
+    req.userId = decoded.id;
+    next();
+  });
+};
 
 (async () => {
   try {
@@ -68,10 +90,10 @@ router.post("/:base/:target", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
-  const userId = req.params.id;
+router.get("/", verifyJWT, async (req, res) => {
+  const transactions = getTransactions(req.userId);
 
-  const data = await getTransactions(userId);
+  res.json({ message: req.userId, transactions: transactions });
 });
 
 module.exports = router;

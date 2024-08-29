@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import fetchTransactions from "../../fetchData/fetchTransactions";
 
 const Accountpage = () => {
   const navigate = useNavigate();
@@ -7,6 +8,10 @@ const Accountpage = () => {
   const handleLogout = (e) => {
     localStorage.removeItem("token");
     navigate("/");
+  };
+
+  const handleClick = async () => {
+    const transactions = await fetchTransactions();
   };
 
   return (
@@ -20,7 +25,7 @@ const Accountpage = () => {
       </div>
 
       <div className="transactionsButton">
-        {/* <button onClick={handleClick}>Last Transactions</button> */}
+        <button onClick={handleClick}>Last Transactions</button>
       </div>
     </div>
   );
