@@ -68,4 +68,10 @@ router.post("/:base/:target", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const userId = req.params.id;
+
+  const data = await getTransactions(userId);
+});
+
 module.exports = router;

@@ -1,9 +1,15 @@
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Account = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/account");
+  };
+
   return (
     <div className="accountButton">
-      <button onClick={() => redirect("/account")}>Account</button>
+      <button onClick={handleClick}>Account</button>
     </div>
   );
 };

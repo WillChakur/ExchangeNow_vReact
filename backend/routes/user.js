@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const logger = require("../logger");
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const saltRounds = 10;
 
 (async () => {
@@ -14,8 +16,27 @@ const saltRounds = 10;
   }
 })();
 
+const verifyJWT = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ message: "No token provided" });
+  }
+
+  jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+    if (err) {
+      res.status(401).json({ message: "Error to authenticate token" });
+    }
+
+    req.userId = decoded.id;
+    next();
+  });
+};
+
 router.post("/register", async (req, res) => {
   const { username, password, email } = req.body;
+
   const hashedPassword = await bcrypt.hash(password, saltRounds);
   try {
     await insertUser(username, hashedPassword, email);
@@ -42,8 +63,13 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid password" });
     }
 
-    req.session.userId = user.userId;
-    res.status(200).json({ message: "Login successful" });
+    const id = user.userid;
+
+    const token = jwt.sign({ id }, process.env.JWT_KEY, {
+      expiresIn: 300,
+    });
+
+    res.json({ auth: true, token: token, result: user });
   } catch (error) {
     console.error("Error during login:", error);
     res.status(500).json({ message: "Internal server error" });

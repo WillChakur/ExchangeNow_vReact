@@ -1,27 +1,27 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-<<<<<<< HEAD
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Homepage from "../frontend/components/Homepage/Homepage";
 import Loginpage from "../frontend/components/Login/Loginpage";
 import Registerpage from "../frontend/components/Register/Registerpage";
-=======
-import Homepage from "../frontend/components/HomePage/Homepage";
-import Loginpage from "../frontend/components/Login/Loginpage";
->>>>>>> refs/remotes/origin/main
+import Accountpage from "../frontend/components/Account/Accountpage";
+
+const queryClient = new QueryClient();
+
 const App = () => {
   return (
-    <BrowserRouter>
-      <div>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<Loginpage />}></Route>
-<<<<<<< HEAD
-          <Route path="/register" element={<Registerpage />}></Route>
-=======
->>>>>>> refs/remotes/origin/main
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <div>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/login" element={<Loginpage />}></Route>
+            <Route path="/register" element={<Registerpage />}></Route>
+            <Route path="/account" element={<Accountpage />}></Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 };
 

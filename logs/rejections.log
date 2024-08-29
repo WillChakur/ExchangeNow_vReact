@@ -1,0 +1,24 @@
+[31merror[39m:   unhandledRejection: userId is not defined
+ReferenceError: userId is not defined
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/user.js:79:3
+    at Layer.handle [as handle_request] (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/route.js:149:13)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/user.js:32:5
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/jsonwebtoken/verify.js:261:12
+    at getSecret (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/jsonwebtoken/verify.js:101:10)
+    at verifyJWT (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/user.js:27:7)
+    at Layer.handle [as handle_request] (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/route.js:149:13)
+[31merror[39m:   unhandledRejection: userId is not defined
+ReferenceError: userId is not defined
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/user.js:80:3
+    at Layer.handle [as handle_request] (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/layer.js:95:5)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/index.js:175:3)
+    at router (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/index.js:47:12)

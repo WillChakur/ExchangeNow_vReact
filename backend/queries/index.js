@@ -76,9 +76,9 @@ let insertRate = async (
 let createUsersTable = async () => {
   let sql = ` CREATE TABLE IF NOT EXISTS users (
                 userId SERIAL PRIMARY KEY,
-                username VARCHAR(20),
-                password VARCHAR(20),
-                email VARCHAR(50) 
+                username VARCHAR(30),
+                password VARCHAR(100),
+                email VARCHAR(255) 
     )`;
   try {
     await db(sql); // Now, await will work as expected
