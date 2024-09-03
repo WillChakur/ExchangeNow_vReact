@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import RegisterpageCss from "./Registerpage.module.css";
+
 const Registerpage = () => {
   const navigate = useNavigate();
 
@@ -48,29 +50,45 @@ const Registerpage = () => {
   };
 
   return (
-    <div className="registerPage">
-      <div className="homeButton">
-        <button onClick={handleBack}>Back</button>
-      </div>
+    <div className={RegisterpageCss.container}>
+      <div className="registerPage">
+        <div className={RegisterpageCss.homebtnContainer}>
+          <button className={RegisterpageCss.btn} onClick={handleBack}>
+            Home
+          </button>
+        </div>
 
-      <div className="registerSection">
-        <div className="registerForm">
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              id="username"
-            />
-            <input
-              type="text"
-              name="password"
-              placeholder="Password"
-              id="password"
-            />
-            <input type="text" name="email" placeholder="Email" id="email" />
-            <button>Submit</button>
-          </form>
+        <div className={RegisterpageCss.titleContainer}>
+          <h1 className={RegisterpageCss.title}>Register</h1>
+        </div>
+
+        <div className="registerSection">
+          <div className="registerForm">
+            <form className={RegisterpageCss.form} onSubmit={handleSubmit}>
+              <input
+                className={RegisterpageCss.input}
+                type="text"
+                name="username"
+                placeholder="Username"
+                id="username"
+              />
+              <input
+                className={RegisterpageCss.input}
+                type="text"
+                name="password"
+                placeholder="Password"
+                id="password"
+              />
+              <input
+                className={RegisterpageCss.input}
+                type="text"
+                name="email"
+                placeholder="Email"
+                id="email"
+              />
+              <button className={RegisterpageCss.btn}>Submit</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
