@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+}
+
+.logo {
+  font-size: 3rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

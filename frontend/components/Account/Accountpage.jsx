@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import fetchTransactions from "../../fetchData/fetchTransactions";
 
 const Accountpage = () => {
@@ -26,8 +27,23 @@ const Accountpage = () => {
     navigate("/");
   };
 
-  const handleClick = async () => {
-    const transactions = await fetchTransactions();
+  const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState("");
+  const [error, setError] = useState("");
+
+  const getTransactions = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetchTransactions();
+
+      setTransactions(res);
+    } catch (error) {
+      setError("Error fetching the transactions");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -42,7 +58,17 @@ const Accountpage = () => {
       </div>
 
       <div className="transactionsButton">
-        <button onClick={handleClick}>Last Transactions</button>
+        <button onClick={getTransactions}>Last Transactions</button>
+      </div>
+
+      <div className="transaction-list">
+        {loading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+        <ul>
+          {transactions.map((transaction) => (
+            <li key={transaction.transactionid}>Base: {transaction.base}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );

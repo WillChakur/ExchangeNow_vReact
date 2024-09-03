@@ -90,9 +90,9 @@ router.post("/:base/:target", verifyJWT, async (req, res) => {
 });
 
 router.get("/", verifyJWT, async (req, res) => {
-  const transactions = getTransactions(req.userId);
+  const transactions = await getTransactions(req.userId);
 
-  res.json({ message: req.userId, transactions: transactions });
+  res.json({ transactions: transactions });
 });
 
 module.exports = router;

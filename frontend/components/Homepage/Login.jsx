@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import LoginCss from "./Login.module.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,7 +10,9 @@ const Login = () => {
 
   return (
     <div className="loginButton">
-      <button onClick={handleLogin}>Login</button>
+      <button className={LoginCss.btn} onClick={handleLogin}>
+        Login
+      </button>
     </div>
   );
 };

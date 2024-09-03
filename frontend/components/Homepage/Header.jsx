@@ -1,6 +1,7 @@
 import Login from "./Login";
 import Account from "./Account";
 import fetchUser from "../../fetchData/fetchUser";
+import HeaderCss from "./Header.module.css";
 import { useState, useEffect } from "react";
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,12 +12,16 @@ const Header = () => {
   }, []);
 
   return (
-    <header>
-      <div className="logo">
-        <h1>Exchange Rates</h1>
-      </div>
-      <div className="nav">{isLoggedIn ? <Account /> : <Login />}</div>
-    </header>
+    <div className={HeaderCss.container}>
+      <header className={HeaderCss.header}>
+        <div>
+          <h1 className={HeaderCss.logo}>Exchange Rates</h1>
+        </div>
+        <div className={HeaderCss.nav}>
+          {isLoggedIn ? <Account /> : <Login />}
+        </div>
+      </header>
+    </div>
   );
 };
 

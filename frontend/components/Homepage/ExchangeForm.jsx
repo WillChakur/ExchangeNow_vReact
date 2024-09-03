@@ -1,6 +1,7 @@
 import fetchResult from "../../fetchData/fetchResult";
 import Result from "./Result";
 import { useState } from "react";
+import ExchangeFormCss from "./ExchangeForm.module.css";
 
 const base = ["EUR"];
 const target = ["BRL", "USD", "JPY", "EUR", "GBP", "BTC", "CAD"];
@@ -26,10 +27,12 @@ const ExchangeForm = () => {
   };
 
   return (
-    <div className="form">
-      <form className="exchange" onSubmit={onSubmit}>
-        <label htmlFor="base">Base currency:</label>
-        <select id="base" name="base">
+    <div className={ExchangeFormCss.container}>
+      <form className={ExchangeFormCss.form} onSubmit={onSubmit}>
+        <label className={ExchangeFormCss.label} htmlFor="base">
+          Base currency:
+        </label>
+        <select className={ExchangeFormCss.select} id="base" name="base">
           <option value="">Select a currency</option>
           {base.map((symbol) => (
             <option key={symbol} value={symbol}>
@@ -37,8 +40,10 @@ const ExchangeForm = () => {
             </option>
           ))}
         </select>
-        <label htmlFor="target">Target currency:</label>
-        <select id="target" name="target">
+        <label className={ExchangeFormCss.label} htmlFor="target">
+          Target currency:
+        </label>
+        <select className={ExchangeFormCss.select} id="target" name="target">
           <option value="">Select a currency</option>
           {target.map((symbol) => (
             <option key={symbol} value={symbol}>
@@ -46,7 +51,7 @@ const ExchangeForm = () => {
             </option>
           ))}
         </select>
-        <button>Submit</button>
+        <button className={ExchangeFormCss.btn}>Submit</button>
       </form>
 
       {resultData && (

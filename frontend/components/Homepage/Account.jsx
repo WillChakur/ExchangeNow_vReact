@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import AccountCss from "./Account.module.css";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -8,8 +9,10 @@ const Account = () => {
   };
 
   return (
-    <div className="accountButton">
-      <button onClick={handleClick}>Account</button>
+    <div>
+      <button className={AccountCss.btn} onClick={handleClick}>
+        Account
+      </button>
     </div>
   );
 };

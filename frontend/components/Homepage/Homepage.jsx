@@ -1,13 +1,18 @@
 import ExchangeForm from "./ExchangeForm";
 import Header from "./Header";
+import HomepageCss from "./Homepage.module.css";
 const Homepage = () => {
   return (
-    <div className="homepage">
-      <Header />
-      <div className="homepage-title">
-        <h2>Select Your Base Currency and Discover Exchange Rates</h2>
+    <div className={HomepageCss.container}>
+      <div className={HomepageCss.homepage}>
+        <Header />
+        <div>
+          <h2 className={HomepageCss.title}>
+            Select Your Base Currency and Discover Exchange Rates
+          </h2>
+        </div>
+        <ExchangeForm />
       </div>
-      <ExchangeForm />
     </div>
   );
 };

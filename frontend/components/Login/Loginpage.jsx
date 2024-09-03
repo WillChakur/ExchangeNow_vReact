@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
+import LoginpageCss from "./Loginpage.module.css";
 const Loginpage = () => {
   const navigate = useNavigate();
 
@@ -49,32 +49,44 @@ const Loginpage = () => {
   };
 
   return (
-    <div className="loginPage">
-      <div className="homeButton">
-        <button onClick={handleBack}>Back</button>
-      </div>
+    <div className={LoginpageCss.container}>
+      <div className={LoginpageCss.loginpage}>
+        <div className={LoginpageCss.homebtnContainer}>
+          <button className={LoginpageCss.btn} onClick={handleBack}>
+            Home
+          </button>
+        </div>
+        <div className={LoginpageCss.titleContainer}>
+          <h1 className={LoginpageCss.title}>Login</h1>
+        </div>
 
-      <div className="loginSection">
-        <div className="loginForm">
-          <form onSubmit={handleForm}>
+        <div className={LoginpageCss.loginSection}>
+          <form className={LoginpageCss.form} onSubmit={handleForm}>
             <input
+              className={LoginpageCss.input}
               type="text"
               name="username"
               id="username"
               placeholder="Username"
             />
             <input
+              className={LoginpageCss.input}
               type="text"
               name="password"
               id="password"
               placeholder="Password"
             />
-            <button>Submit</button>
+            <button className={LoginpageCss.btn}>Login</button>
           </form>
         </div>
 
-        <div className="registerButton">
-          <button onClick={handleRegister}>Register</button>
+        <div className={LoginpageCss.registerbtnContainer}>
+          <button
+            className={`${LoginpageCss.btn} ${LoginpageCss.btnReg}`}
+            onClick={handleRegister}
+          >
+            Register
+          </button>
         </div>
       </div>
     </div>

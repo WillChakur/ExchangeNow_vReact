@@ -24,6 +24,12 @@ const fetchTransactions = async () => {
           },
         });
       }
+    } else if (!res.ok) {
+      console.log("Error on fetch transactions");
+    } else {
+      const data = await res.json();
+
+      return data.transactions;
     }
   } catch (error) {
     console.log("Error while fetching transactions");

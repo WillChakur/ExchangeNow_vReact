@@ -112,23 +112,19 @@ let getUser = async (username) => {
 };
 
 const getTransactions = async (userId) => {
-  let sql = `SELECT * FROM userTransactions WHERE userId = $1`;
+  let sql = `SELECT t.transactionId, t.date, t.base, t.brl, t.usd, t.jpy, t.eur, t.gbp, t.btc, t.cad
+    FROM transactions t
+    JOIN userTransactions ut ON t.transactionId = ut.transactionId
+    WHERE ut.userId = $1;`;
   let values = [userId];
   try {
     let result = await db(sql, values);
     if (result.rows.length === 0) {
       console.log("No transactions found for this user.");
       return [];
+    } else {
+      return result.rows;
     }
-    let data = await Promise.all(
-      result.rows.map(async (e) => {
-        let sql = `SELECT * FROM transactions WHERE transactionId = $1`;
-        let values = [e.transactionId];
-        let transactionResult = await db(sql, values);
-        return transactionResult.rows[0];
-      }),
-    );
-    return data;
   } catch (error) {
     logger.error("Error getting user transactions: ", error);
     throw error;
