@@ -15,17 +15,18 @@ const verifyJWT = (req, res, next) => {
 
   const token = authHeader && authHeader.split(" ")[1];
 
-  if (!token) {
+  if (token === "null") {
     return res.status(401).json({ message: "No token provided" });
   }
 
   jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
     if (err) {
+      req.userId = null;
       res.status(401).json({ message: "Error to authenticate token" });
+    } else {
+      req.userId = decoded.id;
+      next();
     }
-
-    req.userId = decoded.id;
-    next();
   });
 };
 
@@ -90,9 +91,12 @@ router.post("/:base/:target", verifyJWT, async (req, res) => {
 });
 
 router.get("/", verifyJWT, async (req, res) => {
-  const transactions = await getTransactions(req.userId);
-
-  res.json({ transactions: transactions });
+  if (req.userId != null) {
+    const transactions = await getTransactions(req.userId);
+    res.json({ transactions: transactions });
+  } else {
+    res.status(401).json({ message: "Token expired" });
+  }
 });
 
 module.exports = router;

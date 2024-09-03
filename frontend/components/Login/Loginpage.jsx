@@ -33,7 +33,14 @@ const Loginpage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+        credentials: "include",
       });
+
+      if (res.status === 401) {
+        alert(
+          "Oops! The username or password you entered is incorrect. Please try again.",
+        );
+      }
 
       const result = await res.json();
 

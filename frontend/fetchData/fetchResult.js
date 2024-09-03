@@ -10,6 +10,11 @@ const fetchResult = async (base, target) => {
     },
   });
 
+  if (apiRes.status === 401) {
+    alert(
+      "It looks like you're not logged in. Please log in to access your currencies.",
+    );
+  }
   if (!apiRes.ok) {
     throw new Error(`fetching the result from server`);
   }

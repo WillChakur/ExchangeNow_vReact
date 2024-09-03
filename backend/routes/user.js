@@ -75,8 +75,8 @@ router.post("/login", async (req, res) => {
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      path: "/refresh_token",
+      secure: false,
+      path: "/user/refresh_token",
     });
 
     res.json({ auth: true, token: acessToken, result: user });
