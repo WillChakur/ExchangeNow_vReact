@@ -9,6 +9,9 @@ const refreshToken = async () => {
 
     if (!res.ok) {
       console.log("Refresh token failed");
+      alert(
+        "Your session has expired. Please log out and log in again to continue.",
+      );
       return null;
     } else {
       localStorage.setItem("token", data.token);

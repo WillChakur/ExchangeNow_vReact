@@ -73,20 +73,21 @@ const Accountpage = () => {
           {loading && <p>Loading...</p>}
           {error && <p>{error}</p>}
           <ul>
-            {transactions.map((transaction) => (
-              <li
-                className={AccountpageCss.listItem}
-                key={transaction.transactionid}
-              >
-                {" "}
-                <span className={AccountpageCss.span}>
-                  Base: {transaction.base} ➡️ BRL: {transaction.brl} -- USD:{" "}
-                  {transaction.usd} -- JPY: {transaction.usd} -- GBP:{" "}
-                  {transaction.gbp} -- BTC: {transaction.btc} -- CAD:{" "}
-                  {transaction.cad}{" "}
-                </span>{" "}
-              </li>
-            ))}
+            {transactions &&
+              transactions.map((transaction) => (
+                <li
+                  className={AccountpageCss.listItem}
+                  key={transaction.transactionid}
+                >
+                  {" "}
+                  <span className={AccountpageCss.span}>
+                    Base: {transaction.base} ➡️ BRL: {transaction.brl} -- USD:{" "}
+                    {transaction.usd} -- JPY: {transaction.usd} -- GBP:{" "}
+                    {transaction.gbp} -- BTC: {transaction.btc} -- CAD:{" "}
+                    {transaction.cad}{" "}
+                  </span>{" "}
+                </li>
+              ))}
           </ul>
         </div>
       </div>

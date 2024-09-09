@@ -3,3 +3,4 @@
 [31merror[39m:   Error creating users table:  getaddrinfo ENOTFOUND db
 [31merror[39m:   Error setting up the users table:  getaddrinfo ENOTFOUND db
 [31merror[39m:   Error creating transactions table:  getaddrinfo ENOTFOUND db
+[31merror[39m:   Error setting up the transaction table: Error: getaddrinfo ENOTFOUND db

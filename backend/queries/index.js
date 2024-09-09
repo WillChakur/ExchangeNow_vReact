@@ -13,7 +13,7 @@ let createUserTransactionsTable = async () => {
     logger.info("userTransactions table created successfully");
   } catch (error) {
     logger.error("Error creating userTransactions table: ", error);
-    throw error; // Re-throw the error if needed
+    throw error;
   }
 };
 let createTransactionsTable = async () => {
@@ -30,7 +30,7 @@ let createTransactionsTable = async () => {
                 cad REAL 
     )`;
   try {
-    await db(sql); // Now, await will work as expected
+    await db(sql);
     logger.info("transactions table created successfully");
   } catch (error) {
     logger.error("Error creating transactions table: ", error);
@@ -82,7 +82,7 @@ let createUsersTable = async () => {
                 email VARCHAR(255) 
     )`;
   try {
-    await db(sql); // Now, await will work as expected
+    await db(sql);
     logger.info("users table created successfully");
   } catch (error) {
     logger.error("Error creating users table: ", error);

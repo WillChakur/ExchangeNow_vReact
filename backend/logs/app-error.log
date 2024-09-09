@@ -1,0 +1,71 @@
+[31merror[39m:   unhandledRejection: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:699:11)
+    at ServerResponse.header (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:795:10)
+    at ServerResponse.send (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:175:12)
+    at ServerResponse.json (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:279:15)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/rates.js:93:7
+    at Layer.handle [as handle_request] (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/route.js:149:13)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/rates.js:29:5
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/jsonwebtoken/verify.js:190:16
+    at getSecret (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/jsonwebtoken/verify.js:97:14)
+[31merror[39m:   unhandledRejection: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:699:11)
+    at ServerResponse.header (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:795:10)
+    at ServerResponse.send (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:175:12)
+    at ServerResponse.json (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:279:15)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/rates.js:92:7
+    at Layer.handle [as handle_request] (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/route.js:149:13)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/rates.js:28:5
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/jsonwebtoken/verify.js:190:16
+    at getSecret (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/jsonwebtoken/verify.js:97:14)
+[31merror[39m:   Fetch error:
+[31merror[39m:   Fetch error:
+[31merror[39m:   Fetch error:
+[31merror[39m:   Fetch error:
+[31merror[39m:   Error inserting rate:  inserção ou atualização em tabela "usertransactions" viola restrição de chave estrangeira "usertransactions_transactionid_fkey"
+[31merror[39m:   Error inserting rate:  erro de sintaxe em ou próximo a "("
+[31merror[39m:   Error inserting rate:  não existe a coluna "timestamp" da relação "transactions"
+[31merror[39m:   unhandledRejection: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:699:11)
+    at ServerResponse.header (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:795:10)
+    at ServerResponse.send (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:175:12)
+    at ServerResponse.json (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:279:15)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/rates.js:96:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[31merror[39m:   unhandledRejection: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:699:11)
+    at ServerResponse.header (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:795:10)
+    at ServerResponse.send (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:175:12)
+    at ServerResponse.json (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:279:15)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/rates.js:94:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[31merror[39m:   unhandledRejection: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:699:11)
+    at ServerResponse.header (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:795:10)
+    at ServerResponse.send (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:175:12)
+    at ServerResponse.json (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:279:15)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/rates.js:99:21
+    at Layer.handle [as handle_request] (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/route.js:149:13)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/rates.js:30:5
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/jsonwebtoken/verify.js:190:16
+    at getSecret (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/jsonwebtoken/verify.js:97:14)
+[31merror[39m:   unhandledRejection: Cannot set headers after they are sent to the client
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (node:_http_outgoing:699:11)
+    at ServerResponse.header (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:795:10)
+    at ServerResponse.send (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:175:12)
+    at ServerResponse.json (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/response.js:279:15)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/rates.js:99:21
+    at Layer.handle [as handle_request] (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/express/lib/router/route.js:149:13)
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/backend/routes/rates.js:30:5
+    at /home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/jsonwebtoken/verify.js:190:16
+    at getSecret (/home/willchakur/Documentos/devWillChakur/ExchangeNow_vReact/node_modules/jsonwebtoken/verify.js:97:14)

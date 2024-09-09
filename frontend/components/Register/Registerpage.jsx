@@ -27,8 +27,6 @@ const Registerpage = () => {
 
     const data = Object.fromEntries(formData);
 
-    console.log(data);
-
     try {
       const res = await fetch("http://localhost:3000/user/register", {
         method: "POST",
@@ -36,6 +34,7 @@ const Registerpage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+        credentials: "include",
       });
 
       if (!res.ok) {

@@ -1,5 +1,5 @@
 const { createUsersTable, insertUser, getUser } = require("../queries/index");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const logger = require("../logger");
 const express = require("express");
 const router = express.Router();
@@ -16,32 +16,21 @@ const saltRounds = 10;
   }
 })();
 
-const verifyJWT = (req, res, next) => {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
-
-  if (!token) {
-    return res.status(401).json({ message: "No token provided" });
-  }
-
-  jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
-    if (err) {
-      res.status(401).json({ message: "Error to authenticate token" });
-    }
-
-    req.userId = decoded.id;
-    next();
-  });
-};
-
 router.post("/register", async (req, res) => {
   const { username, password, email } = req.body;
+  console.log("Entrei");
 
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
   try {
-    await insertUser(username, hashedPassword, email);
-    res.status(200).send("User registered successfully");
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    try {
+      await insertUser(username, hashedPassword, email);
+      res.status(200).send("User registered successfully");
+    } catch (error) {
+      console.error("Error inserting user into the database:", error);
+      res.status(500).send("Error registering user");
+    }
   } catch (error) {
+    console.error("Error hashing password:", error);
     res.status(500).send("Error registering user");
   }
 });

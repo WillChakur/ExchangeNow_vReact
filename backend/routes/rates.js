@@ -36,7 +36,7 @@ const verifyJWT = (req, res, next) => {
     await createUserTransactionsTable();
     logger.info("Transaction table setup successfully");
   } catch (error) {
-    logger.error("Error setting up the transaction table: ", error);
+    logger.error(`Error setting up the transaction table: ${error}`);
   }
 })();
 
