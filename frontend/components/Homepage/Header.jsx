@@ -15,7 +15,7 @@ const Header = () => {
     <div className={HeaderCss.container}>
       <header className={HeaderCss.header}>
         <div>
-          <h1 className={HeaderCss.logo}>Exchange Rates</h1>
+          <h1 className={HeaderCss.logo}>ExchangeXpert</h1>
         </div>
         <div className={HeaderCss.nav}>
           {isLoggedIn ? <Account /> : <Login />}

@@ -1,12 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import RegisterpageCss from "./Registerpage.module.css";
+import LoginHeader from "../Login/LoginHeader";
 
 const Registerpage = () => {
   const navigate = useNavigate();
-
-  const handleBack = () => {
-    navigate("/");
-  };
 
   const handleRegistered = () => {
     navigate("/login");
@@ -50,13 +47,8 @@ const Registerpage = () => {
 
   return (
     <div className={RegisterpageCss.container}>
-      <div className="registerPage">
-        <div className={RegisterpageCss.homebtnContainer}>
-          <button className={RegisterpageCss.btn} onClick={handleBack}>
-            Home
-          </button>
-        </div>
-
+      <LoginHeader />
+      <div className={RegisterpageCss.registerPage}>
         <div className={RegisterpageCss.titleContainer}>
           <h1 className={RegisterpageCss.title}>Register</h1>
         </div>
@@ -85,7 +77,7 @@ const Registerpage = () => {
                 placeholder="Email"
                 id="email"
               />
-              <button className={RegisterpageCss.btn}>Submit</button>
+              <button className={RegisterpageCss.btn}>Register</button>
             </form>
           </div>
         </div>

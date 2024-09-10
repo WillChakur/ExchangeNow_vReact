@@ -1,14 +1,19 @@
-.container {
-  width: 100%;
-}
-
 .logo {
   font-size: 3rem;
 }
 
+.container {
+  color: white;
+  max-height: 100px;
+  margin-bottom: 20px;
+}
+
 .header {
+  margin: auto;
+  max-width: 60%;
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 10px;
 }
