@@ -9,8 +9,10 @@ const AccountHeader = () => {
   };
 
   const handleLogout = async () => {
+    const apiUrl = process.env.REACT_APP_API_URL;
+
     try {
-      const res = await fetch("http://localhost:3000/user/logout", {
+      const res = await fetch(`${apiUrl}/user/logout`, {
         method: "POST",
         credentials: "include",
       });

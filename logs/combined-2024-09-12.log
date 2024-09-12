@@ -27,3 +27,7 @@
 [32minfo[39m:    users table created successfully
 [32minfo[39m:    Users table setup successfully
 [32minfo[39m:    Rate inserted successfully
+[31merror[39m:   Error creating transactions table:  The server does not support SSL connections
+[31merror[39m:   Error setting up the transaction table: Error: The server does not support SSL connections
+[31merror[39m:   Error creating users table:  The server does not support SSL connections
+[31merror[39m:   Error setting up the users table:  The server does not support SSL connections

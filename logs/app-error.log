@@ -11,3 +11,7 @@
 [31merror[39m:   Error setting up the users table:  getaddrinfo ENOTFOUND postgres
 [31merror[39m:   Error creating transactions table:  getaddrinfo ENOTFOUND postgres
 [31merror[39m:   Error setting up the transaction table: Error: getaddrinfo ENOTFOUND postgres
+[31merror[39m:   Error creating transactions table:  The server does not support SSL connections
+[31merror[39m:   Error setting up the transaction table: Error: The server does not support SSL connections
+[31merror[39m:   Error creating users table:  The server does not support SSL connections
+[31merror[39m:   Error setting up the users table:  The server does not support SSL connections
