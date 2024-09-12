@@ -5,6 +5,7 @@ const Account = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
+    console.log("Clicado");
     try {
       const res = await fetch("http://localhost:3000/user/logout", {
         method: "POST",
@@ -16,7 +17,7 @@ const Account = () => {
       }
 
       localStorage.removeItem("token");
-      navigate("/");
+      navigate(0);
     } catch (error) {
       console.error("Logout error:", error);
     }

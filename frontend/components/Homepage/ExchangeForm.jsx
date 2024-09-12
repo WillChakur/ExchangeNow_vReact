@@ -17,16 +17,20 @@ const ExchangeForm = () => {
 
     const formData = new FormData(e.currentTarget);
     const base = formData.get("base");
-    const target = formData.get("target");
+    const userTarget = formData.get("target");
 
-    const data = await fetchResult(base, target);
+    if (target.includes(userTarget)) {
+      const data = await fetchResult(base, target);
 
-    console.log(data);
+      console.log(data);
 
-    setResultData(data);
-    setSelectedBase(base);
-    setSelectedTarget(target);
-    setLoading(false);
+      setResultData(data);
+      setSelectedBase(base);
+      setSelectedTarget(userTarget);
+      setLoading(false);
+    } else {
+      alert("Please choose a target");
+    }
   };
 
   return (
@@ -59,7 +63,7 @@ const ExchangeForm = () => {
           <div className={ExchangeFormCss.targetContainer}>
             <div className={ExchangeFormCss.targetValue}>
               {loading ? (
-                <h2>Loading...</h2>
+                <h2>. . .</h2>
               ) : resultData ? (
                 <Result
                   base={selectedBase}

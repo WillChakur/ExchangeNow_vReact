@@ -7,8 +7,16 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const userLoggedIn = fetchUser();
-    setIsLoggedIn(userLoggedIn);
+    const checkUserLoggedIn = async () => {
+      try {
+        const userLoggedIn = await fetchUser();
+        setIsLoggedIn(userLoggedIn);
+      } catch (error) {
+        console.error("Failed to fetch user login status:", error);
+      }
+    };
+
+    checkUserLoggedIn();
   }, []);
 
   return (

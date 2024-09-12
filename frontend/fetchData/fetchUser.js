@@ -1,26 +1,33 @@
-import jwt_decode from "jwt-decode";
-
-const fetchUser = () => {
+const fetchUser = async () => {
   const token = localStorage.getItem("token");
 
   if (!token) {
+    console.log("No token found");
     return false;
   }
 
   try {
-    const { exp } = jwt_decode(token);
-    const currentTime = Date.now() / 1000;
+    const res = await fetch("http://localhost:3000/user/analyzeToken", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    if (exp < currentTime) {
-      localStorage.removeItem("token");
+    if (res.status === 401) {
+      console.log("Token invalid or expired");
       return false;
     }
 
-    return true;
+    if (res.status === 200) {
+      return true;
+    }
   } catch (error) {
-    console.error("Invalid Token: ", error);
-    return false;
+    console.error("Error checking the token", error);
   }
+
+  return false;
 };
 
 export default fetchUser;

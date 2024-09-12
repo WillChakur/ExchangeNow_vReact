@@ -8,10 +8,6 @@ const Loginpage = () => {
     navigate("/register");
   };
 
-  const handleBack = () => {
-    navigate("/");
-  };
-
   const handleForm = async (e) => {
     e.preventDefault();
 
