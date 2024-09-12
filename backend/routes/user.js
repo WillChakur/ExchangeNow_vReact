@@ -4,6 +4,7 @@ const logger = require("../logger");
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const jwt_decode = require("jwt-decode");
 require("dotenv").config();
 const saltRounds = 10;
 
@@ -94,6 +95,23 @@ router.post("/refresh_token", (req, res) => {
     });
 
     res.json({ token: acessToken });
+  });
+});
+
+router.post("/analyzeToken", (req, res) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ message: "Token missing" });
+  }
+
+  jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: "Token expired or invalid" });
+    }
+
+    return res.status(200).json({ message: "Valid token", user: decoded });
   });
 });
 
