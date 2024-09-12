@@ -2,7 +2,7 @@
 FROM node:22 AS node-builder
 RUN mkdir /build
 WORKDIR /build
-COPY ./package*.json ./
+COPY ../package*.json ./
 RUN npm ci
 COPY backend/. ./backend
 
