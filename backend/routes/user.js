@@ -4,7 +4,6 @@ const logger = require("../logger");
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const jwt_decode = require("jwt-decode");
 require("dotenv").config();
 const saltRounds = 10;
 
@@ -39,16 +38,17 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
+  console.log(username);
+
   try {
     const data = await getUser(username);
-
     if (data.rows.length === 0) {
       return res.status(401).json({ message: "Invalid username" });
     }
 
     const user = data.rows[0];
     const isPasswordValid = await bcrypt.compare(password, user.password);
-
+    console.log(user);
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid password" });
     }
