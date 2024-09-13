@@ -18,7 +18,6 @@ const saltRounds = 10;
 
 router.post("/register", async (req, res) => {
   const { username, password, email } = req.body;
-  console.log("Entrei");
 
   try {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -38,8 +37,6 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
-  console.log(username);
-
   try {
     const data = await getUser(username);
     if (data.rows.length === 0) {
@@ -48,7 +45,7 @@ router.post("/login", async (req, res) => {
 
     const user = data.rows[0];
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    console.log(user);
+
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid password" });
     }
@@ -71,7 +68,7 @@ router.post("/login", async (req, res) => {
 
     res.json({ auth: true, token: acessToken, result: user });
   } catch (error) {
-    console.error("Error during login:", error);
+    console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 });

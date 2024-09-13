@@ -91,8 +91,11 @@ router.post("/:base/:target", verifyJWT, async (req, res) => {
 });
 
 router.get("/", verifyJWT, async (req, res) => {
+  console.log(req.userId);
+
   if (req.userId != null) {
     const transactions = await getTransactions(req.userId);
+    console.log(transactions);
     res.json({ transactions: transactions });
   } else {
     res.status(401).json({ message: "Token expired" });
