@@ -3,7 +3,7 @@ const fetchResult = async (base, target) => {
   const token = localStorage.getItem("token");
   const apiUrl = process.env.REACT_APP_API_URL;
 
-  const apiRes = await fetch(`${apiUrl}/rates/${base}/${target}`, {
+  const apiRes = await fetch(`/rates/${base}/${target}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

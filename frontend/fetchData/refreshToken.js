@@ -1,6 +1,6 @@
 const refreshToken = async () => {
   try {
-    const res = await fetch("http://localhost:3000/user/refresh_token", {
+    const res = await fetch("/user/refresh_token", {
       method: "POST",
       credentials: "include",
     });

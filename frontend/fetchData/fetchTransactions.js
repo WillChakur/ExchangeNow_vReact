@@ -3,7 +3,7 @@ import refreshToken from "../fetchData/refreshToken";
 const fetchTransactions = async () => {
   let token = localStorage.getItem("token");
   try {
-    let res = await fetch("http://localhost:3000/rates", {
+    let res = await fetch("/rates", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -15,7 +15,7 @@ const fetchTransactions = async () => {
       token = await refreshToken();
 
       if (token) {
-        res = await fetch("http://localhost:3000/rates", {
+        res = await fetch("/rates", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

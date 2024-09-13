@@ -7,7 +7,7 @@ const Account = () => {
   const handleLogout = async () => {
     console.log("Clicado");
     try {
-      const res = await fetch("http://localhost:3000/user/logout", {
+      const res = await fetch("/user/logout", {
         method: "POST",
         credentials: "include",
       });

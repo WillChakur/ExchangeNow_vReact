@@ -7,7 +7,7 @@ const fetchUser = async () => {
   }
 
   try {
-    const res = await fetch("http://localhost:3000/user/analyzeToken", {
+    const res = await fetch("/user/analyzeToken", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
