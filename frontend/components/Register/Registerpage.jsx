@@ -24,10 +24,10 @@ const Registerpage = () => {
 
     const data = Object.fromEntries(formData);
 
-    const apiUrl2 = process.env.REACT_APP_API_URL;
-
+    const apiUrl = process.env.REACT_APP_API_URL;
+    console.log(apiUrl);
     try {
-      const res = await fetch(`${apiUrl2}/user/register`, {
+      const res = await fetch(`${apiUrl}/user/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
