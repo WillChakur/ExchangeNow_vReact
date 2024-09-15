@@ -40,118 +40,38 @@ Ferramentas de Desenvolvimento:
 
 ## Instalação
 
-O serviço está disponível via Heroku para fácil acesso. Você pode visitar a aplicação aqui: https://exchange-xpert-cd459c52b763.herokuapp.com/
+**Nota de Segurança**: A versão atual desta aplicação não é totalmente segura para uso. Embora a criptografia de senhas esteja implementada usando bcrypt, recursos de segurança adicionais, como OAuth e criptografia avançada, não estão configurados. Use este serviço com cautela se estiver lidando com dados sensíveis.
 
-Nota: A versão atual desta aplicação não é totalmente segura para uso. Embora a criptografia de senhas esteja implementada usando bcrypt, recursos de segurança adicionais, como OAuth e criptografia avançada, não estão configurados. Use este serviço com cautela se estiver lidando com dados sensíveis.
+O serviço está disponível via Heroku para fácil acesso. Você pode visitar a aplicação aqui: [ExchangeNow](https://exchange-xpert-cd459c52b763.herokuapp.com/).
 
-Caso você possua o Docker e o PostgreSQL instalados na sua máquina é possível configurar um arquivo .env, clonar o repositório e rodar o container localmente.
+### Configuração Local
 
-Para isso primeiro clone o repositório:
+Caso você possua o Docker e o PostgreSQL instalados na sua máquina, é possível configurar um arquivo `.env`, clonar o repositório e rodar o container localmente.
 
-```bash
-  git clone git@github.com:WillChakur/ExchangeNow_vReact.git
-  cd ExchangeNow_vReact
-```
+1. Clone o repositório:
 
-Depois crie uma Banco de Dados PostgreSQL e substitua os valores nos seguintes campos da conexão com o Banco:
+    ```bash
+    git clone git@github.com:WillChakur/ExchangeNow_vReact.git
+    cd ExchangeNow_vReact
+    ```
 
-```bash
-#Exemplo de Arquivo .env
-DB_USERNAME=user
-DB_PASSWORD=pass
-DB_HOST=db
-DB_PORT=5432
-DB_DATABASE=dbname
-```
+2. Crie um Banco de Dados PostgreSQL e substitua os valores nos seguintes campos da conexão com o Banco:
 
-```bash
-const pg = require("pg");
-const { Pool } = pg;
-require("dotenv").config();
+    ```dotenv
+    # Exemplo de Arquivo .env
+    DB_USERNAME=user
+    DB_PASSWORD=pass
+    DB_HOST=db
+    DB_PORT=5432
+    DB_DATABASE=dbname
+    ```
 
-const pool = new Pool({
-   user: process.env.DB_USERNAME,
-   password: process.env.DB_PASSWORD,
-   host: process.env.DB_HOST, // DEVE SER "db" PARA O USO DO DOCKER
-   port: process.env.DB_PORT,
-   database: process.env.DB_DATABASE,
- });
+3. Modifique o arquivo `docker-compose.yaml` para rodar o Banco de Dados criado dentro de um container. Todos os valores `${...}` devem ser modificados com os dados do Banco de Dados.
 
-const query = async (text, params, callback) => {
-  return pool.query(text, params, callback);
-};
+4. Rode o seguinte comando antes de começar a utilizar o serviço:
 
-module.exports = query;
+    ```bash
+    docker-compose up --build
+    ```
 
-```
-
-O arquivo docker-compose.yaml também deve ser modificado para rodar o Banco de Dados criado dentro de um container, todos os valores ${...} devem ser modificados com os dados do Banco de Dados.
-
-```bash
-services:
-  frontend:
-    build:
-      context: .
-      dockerfile: ./frontend/Dockerfile
-    ports:
-      - "5173:80"
-    depends_on:
-      - backend
-    environment:
-      VITE_API_URL: http://backend:3000
-    volumes:
-      - ./frontend:/app
-
-    env_file:
-      - ./.env
-    networks:
-      - mynetwork
-
-  backend:
-    build:
-      context: .
-      dockerfile: ./backend/Dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-    environment:
-      DATABASE_URL: ${DB_URL}
-    volumes:
-      - ./backend:/app
-
-    env_file:
-      - ./.env
-    networks:
-      - mynetwork
-
-  db:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_DATABASE}
-    ports:
-      - "5441:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    env_file:
-      - ./.env
-    networks:
-      - mynetwork
-
-volumes:
-  pgdata:
-
-networks:
-  mynetwork:
-
-```
-
-Por fim será necessário rodar o seguinte comando antes de começar a utilizar o serviço:
-
-```bash
-docker-compose up --build
-```
-
-O serviço vai estar rodando em http://localhost:5173.
+O serviço vai estar rodando em [http://localhost:5173](http://localhost:5173).
